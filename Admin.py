@@ -3,6 +3,9 @@ from Instance import connection, database
 
 users = database["vendedor"]
 products = database["producto"]
+expenses = database["gastos"]
+
+
 
 def CreateID(collection):
     id = collection.count_documents({}) + 1
@@ -34,11 +37,18 @@ def CreateProduct():
 def AddStock():
     productID = int(input("Ingrese el ID del producto a modificar: "))
     cant = int(input("Ingrese la cantidad a agregar: "))
-    product = products.find_one({"_id": productID})
-    
+    products.update_one({"_id": productID}, {"$inc": {"stock": cant}})
+    print("Se han agregado", cant, "productos al stock")
+
+def AddExpense():
+    nombre = input("Ingrese el nombre del gasto: ")
+    valor = float(input("Ingrese el valor del gasto: "))
+    id = CreateID(expenses)
+    description = input("Ingrese la descripción del gasto: ")
+    expenses.insert_one({"nombre": nombre, "valor": valor, "_id": id, "description": description})
 
 def Menu():
-    print("1. Crear usuario\n2. Crear producto")
+    print("1. Crear usuario\n2. Crear producto\n3. Eliminar usuario\n4. Agregar stock\n5. Agregar gasto")
     action = int(input("Ingrese la acción a realizar:"))
     if action == 1:
         CreateUsers()
@@ -46,7 +56,11 @@ def Menu():
         CreateProduct()
     elif action == 3:
         DeleteUser()
-Menu()
+    elif action == 4:
+        AddStock()
+    elif action == 5:
+        AddExpense()
+#Menu()
 
 
 
