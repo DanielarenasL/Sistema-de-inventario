@@ -1,19 +1,12 @@
 import pymongo
 from Instance import connection, database
-from Hash import hashing
+from Functions import hashing, CreateID
 
-users = database["vendedor"]
-products = database["producto"]
-expenses = database["gastos"]
-
-
-
-def CreateID(collection):
-    id = collection.count_documents({}) + 1
-    return id
+users = database["users"]
+products = database["products"]
+expenses = database["expenses"]
 
 def CreateUsers():
-    
     username = input("Ingrese el nombre de usuario: ")
     password = input("Ingrese la contraseña: ")
     password = hashing(password)

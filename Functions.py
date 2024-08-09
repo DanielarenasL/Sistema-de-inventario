@@ -6,3 +6,6 @@ def hashing(password):
     hashed_password = hash_object.hexdigest()
     return hashed_password
 
+def CreateID(collection):
+    id = collection.count_documents({}) + 1
+    return id
