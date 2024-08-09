@@ -16,6 +16,7 @@ def CreateUsers():
     
     username = input("Ingrese el nombre de usuario: ")
     password = input("Ingrese la contraseña: ")
+    password = hashing(password)
     id = CreateID(users)
     users.insert_one({"username": username, "password": password, "_id": id})
     print("Usuario creado con éxito")
@@ -50,7 +51,7 @@ def AddExpense():
 
 def Menu():
     print("1. Crear usuario\n2. Crear producto\n3. Eliminar usuario\n4. Agregar stock\n5. Agregar gasto")
-    action = int(input("Ingrese la acción a realizar:"))
+    action = int(input("Ingrese la acción a realizar: "))
     if action == 1:
         CreateUsers()
     elif action == 2:
