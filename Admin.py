@@ -1,5 +1,6 @@
 import pymongo
 from Instance import connection, database
+from Hash import hashing
 
 users = database["vendedor"]
 products = database["producto"]
@@ -60,7 +61,7 @@ def Menu():
         AddStock()
     elif action == 5:
         AddExpense()
-#Menu()
+Menu()
 
 
 

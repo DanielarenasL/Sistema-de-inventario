@@ -2,6 +2,8 @@ import pymongo
 from Instance import connection, database
 from Admin import users, products
 
+articles = []
+
 def Sell():
     productoID = int(input("Ingrese el ID del producto: "))
     
