@@ -9,3 +9,5 @@ def hashing(password):
 def CreateID(collection):
     id = collection.count_documents({}) + 1
     return id
+
+
