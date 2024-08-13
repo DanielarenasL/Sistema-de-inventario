@@ -1,5 +1,4 @@
-import pymongo
-from Instance import connection, database
+from Instance import database
 from Functions import hashing, CreateID
 
 users = database["users"]
@@ -42,20 +41,7 @@ def AddExpense():
     description = input("Ingrese la descripción del gasto: ")
     expenses.insert_one({"nombre": nombre, "valor": valor, "_id": id, "description": description})
 
-def Menu():
-    print("1. Crear usuario\n2. Crear producto\n3. Eliminar usuario\n4. Agregar stock\n5. Agregar gasto")
-    action = int(input("Ingrese la acción a realizar: "))
-    if action == 1:
-        CreateUsers()
-    elif action == 2:
-        CreateProduct()
-    elif action == 3:
-        DeleteUser()
-    elif action == 4:
-        AddStock()
-    elif action == 5:
-        AddExpense()
-#Menu()
+
 
 
 

@@ -1,6 +1,4 @@
-import pymongo
-from Instance import connection, database
-from Functions import hashing, CreateID
+from Instance import database
 
 class Product():
     def __init__(self, _id, name, price, description, stock):
@@ -12,7 +10,8 @@ class Product():
         self.database = database["products"]
     
     def CreateProduct(self):
-
+        
+        from Functions import CreateID
         name = input("Ingrese el nombre del producto: ")
         price = float(input("Ingrese el precio del producto: "))
         id = CreateID(self.products)
