@@ -55,7 +55,7 @@ def Menu():
         AddStock()
     elif action == 5:
         AddExpense()
-Menu()
+#Menu()
 
 
 
