@@ -1,16 +1,16 @@
-import pymongo
-from Instance import connection, database
+from Instance import database
 from Admin import users
-from Functions import hashing
+from Functions import hashing, Menu
 from Product import Product
 
+Product1 = Product(None, None, None, None, None)
+global sesion 
 sesion = False
 users = database["users"]
-Product1 = Product(None, None, None, None, None)
 
 
 
-if sesion == False:    
+while not sesion:  
     print("        Inicio de sesión           ")
 
     user = input("Ingrese el nombre de usuario: ")
@@ -19,12 +19,15 @@ if sesion == False:
     hpassword = hashing(password)
 
     user_check = users.find_one({"username": user})
-        
+            
     if user == user_check["username"] and hpassword == user_check["password"]:
-    
+        
         print("Bienvenido")
         sesion = True
+        break
     else:
+
         print("contraseña y/o usuario incorrecto")
-else:
-    print("menu")
+        sesion = False
+Menu(Product1)
+
