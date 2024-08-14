@@ -1,22 +1,21 @@
-import pymongo
-from Instance import connection, database
-from Admin import users, products
+from Instance import database
+users = database["users"]
 
-articles = []
-
-def Sell():
-    productoID = int(input("Ingrese el ID del producto: "))
+class User():
+    def __init__(self, _id, username, password):
+        self.username = username
+        self.password = password
+        self._id = _id
+        self.admin = False
     
-    if products.find_one({"_id": productoID}) is None:
-        print("El ID del producto no existe en la base de datos")
-    elif products.find_one({"_id": productoID}): 
-        cant = int(input("Ingrese la cantidad: "))
-        products.update_one({"_id": productoID}, {"$inc": {"stock": -cant}})
-        another = input("¿Desea vender otro producto? (s/n): ")
-        if another == "s":
-            Sell()
-        else:
-            print("Venta realizada con éxito")
-    else:
-        print("No hay suficiente stock")
-Sell()
+    def CreateUsers(self):
+
+        from Functions import CreateID, hashing
+        self.username = input("Ingrese el nombre de usuario: ")
+        self.password = input("Ingrese la contraseña: ")
+        self.password = hashing(self.password)
+        self._id = CreateID(users)
+        users.insert_one({"username": self.username, "password": self.password, "_id": self._id})
+        print("Usuario creado con éxito")
+
+

@@ -2,8 +2,10 @@ from Instance import database
 from Admin import users
 from Functions import hashing, Menu
 from Product import Product
+from User import User
 
 Product1 = Product(None, None, None, None, None)
+User1 = User(None, None, None)
 global sesion 
 sesion = False
 users = database["users"]

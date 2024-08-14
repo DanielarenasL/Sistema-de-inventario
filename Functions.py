@@ -7,8 +7,15 @@ def hashing(password):
     return hashed_password
 
 def CreateID(collection):
-    id = collection.count_documents({}) + 1
-    return id
+    # Buscar el documento con el ID más alto
+    ultimo_documento = collection.find_one(sort=[("_id", -1)])
+    if ultimo_documento is None:
+        return 1
+    else:
+        id = ultimo_documento["_id"] + 1
+        return id
+
+    
 
 def Menu(Product1):
     print("1. Crear usuario\n2. Crear producto\n3. Eliminar usuario\n4. Agregar stock\n5. Agregar gasto")
@@ -24,4 +31,6 @@ def Menu(Product1):
     elif action == 5:
         Product1.AddExpense()
     elif action == 6:
+        Product1.DeleteProduct()
+    elif action == 7:
         exit()
