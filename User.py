@@ -17,5 +17,11 @@ class User():
         self._id = CreateID(users)
         users.insert_one({"username": self.username, "password": self.password, "_id": self._id})
         print("Usuario creado con éxito")
+        
+    def DeleteUser():
+
+        userID = int(input("Ingrese el ID del usuario a eliminar: "))
+        users.delete_one({"_id": userID})
+        print("Usuario eliminado con éxito")
 
 
