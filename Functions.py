@@ -1,4 +1,5 @@
 import hashlib
+from Admin import InventorySystem
 
 def hashing(password):
     hash_object = hashlib.sha3_256()
@@ -7,7 +8,6 @@ def hashing(password):
     return hashed_password
 
 def CreateID(collection):
-    # Buscar el documento con el ID más alto
     ultimo_documento = collection.find_one(sort=[("_id", -1)])
     if ultimo_documento is None:
         return 1
@@ -15,22 +15,26 @@ def CreateID(collection):
         id = ultimo_documento["_id"] + 1
         return id
 
-    
-
-def Menu(Product1):
-    print("1. Crear usuario\n2. Crear producto\n3. Eliminar usuario\n4. Agregar stock\n5. Agregar gasto")
-    action = int(input("Ingrese la acción a realizar: "))
-    if action == 1:
-        Product1.CreateUsers()
-    elif action == 2:
-        Product1.CreateProduct()
-    elif action == 3:
-        Product1.DeleteUser()
-    elif action == 4:
-        Product1.AddStock()
-    elif action == 5:
-        Product1.AddExpense()
-    elif action == 6:
-        Product1.DeleteProduct()
-    elif action == 7:
-        exit()
+def Menu(inventory_system):
+    while True:
+        print("\n1. Crear usuario\n2. Crear producto\n3. Eliminar usuario\n4. Agregar stock\n5. Agregar gasto\n6. Eliminar producto\n7. Salir")
+        try:
+            action = int(input("Ingrese la acción a realizar: "))
+            if action == 1:
+                inventory_system.CreateUsers()
+            elif action == 2:
+                inventory_system.CreateProduct()
+            elif action == 3:
+                inventory_system.DeleteUser()
+            elif action == 4:
+                inventory_system.AddStock()
+            elif action == 5:
+                inventory_system.AddExpense()
+            elif action == 6:
+                inventory_system.DeleteProduct()
+            elif action == 7:
+                break
+            else:
+                print("Por favor, ingrese un número válido.")
+        except ValueError:
+            print("Entrada no válida. Por favor ingrese un número.")

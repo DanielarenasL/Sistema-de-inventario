@@ -1,35 +1,35 @@
 from Instance import database
-from Admin import users
-from Functions import hashing, Menu
+from Admin import InventorySystem
+from Functions import Menu
 from Product import Product
 from User import User
+from Admin import hashing
 
-Product1 = Product(None, None, None, None, None)
-User1 = User(None, None, None)
-global sesion 
-sesion = False
 users = database["users"]
+products = database["products"]
+expenses = database["expenses"]
 
+inventory_system = InventorySystem(users, products, expenses)
 
+product_instance = Product(None, None, None, None, None)
+user_instance = User(None, None, None)
+
+sesion = False
 
 while not sesion:  
     print("        Inicio de sesión           ")
-
     user = input("Ingrese el nombre de usuario: ")
-
     password = input("Ingrese la contraseña: ")
     hpassword = hashing(password)
 
     user_check = users.find_one({"username": user})
-            
-    if user == user_check["username"] and hpassword == user_check["password"]:
-        
+    
+    if user_check and user == user_check["username"] and hpassword == user_check["password"]:
         print("Bienvenido")
         sesion = True
         break
     else:
-
-        print("contraseña y/o usuario incorrecto")
+        print("Contraseña y/o usuario incorrecto")
         sesion = False
-Menu(Product1)
 
+Menu(inventory_system)
