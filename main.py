@@ -31,5 +31,5 @@ while not sesion:
 
         print("contraseña y/o usuario incorrecto")
         sesion = False
-Menu(Product1)
+Menu(Product1, User1)
 

@@ -6,7 +6,6 @@ class User():
         self.username = username
         self.password = password
         self._id = _id
-        self.admin = False
     
     def CreateUsers(self):
 
@@ -15,10 +14,10 @@ class User():
         self.password = input("Ingrese la contraseña: ")
         self.password = hashing(self.password)
         self._id = CreateID(users)
-        users.insert_one({"username": self.username, "password": self.password, "_id": self._id})
+        users.insert_one({"username": self.username, "password": self.password, "_id": self._id, "admin": False})
         print("Usuario creado con éxito")
-        
-    def DeleteUser():
+
+    def DeleteUser(self):
 
         userID = int(input("Ingrese el ID del usuario a eliminar: "))
         users.delete_one({"_id": userID})

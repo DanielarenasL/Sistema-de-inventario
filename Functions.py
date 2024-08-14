@@ -17,15 +17,15 @@ def CreateID(collection):
 
     
 
-def Menu(Product1):
+def Menu(Product1, User1):
     print("1. Crear usuario\n2. Crear producto\n3. Eliminar usuario\n4. Agregar stock\n5. Agregar gasto")
     action = int(input("Ingrese la acción a realizar: "))
     if action == 1:
-        Product1.CreateUsers()
+        User1.CreateUsers()
     elif action == 2:
         Product1.CreateProduct()
     elif action == 3:
-        Product1.DeleteUser()
+        User1.DeleteUser()
     elif action == 4:
         Product1.AddStock()
     elif action == 5:
